@@ -33,8 +33,9 @@ status() { curl -sS -o /dev/null -w '%{http_code}' --max-time 20 "$1" 2>/dev/nul
 header() { curl -sSI --max-time 20 "$1" 2>/dev/null | tr -d '\r' | awk -v h="$(tr A-Z a-z <<< "$2")" \
     'BEGIN{FS=": "} tolower($1)==h {print $2}' | tail -1; }
 
+# og-1.jpg is the retired share card, still served so links already shared keep a picture (make-og.sh).
 for path in / /privacy/ /support/ /terms/ /app-ads.txt /robots.txt /sitemap.xml /style.css \
-            /assets/og-1.jpg /assets/favicon-32.png; do
+            /assets/og-2.jpg /assets/og-1.jpg /assets/logo-32.png /assets/logo-180.png; do
     code=$(status "$HOST$path")
     [ "$code" = 200 ] && pass "$path is 200" || fail "$path is $code, expected 200"
 done

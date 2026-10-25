@@ -1,23 +1,25 @@
 #!/usr/bin/env bash
-# Renders the Open Graph share card, assets/og-1.jpg, from scripts/og-card.html.
+# Renders the Open Graph share card, assets/og-2.jpg, from scripts/og-card.html.
 #
-#     scripts/make-og.sh                 writes assets/og-1.jpg
-#     scripts/make-og.sh assets/og-2.jpg a new name, for when the card's words change
+#     scripts/make-og.sh                 writes assets/og-2.jpg
+#     scripts/make-og.sh assets/og-3.jpg a new name, for when the card's words or pictures change
 #
 # WHY THERE IS A SCRIPT AND NOT JUST AN IMAGE. The card carries words, and a picture's words are
 # invisible to grep, to a diff and to scripts/lint-site.py. Here they are text in og-card.html.
 #
-# WRITE TO A NEW FILENAME WHENEVER THE WORDING CHANGES. Messaging apps and social sites cache a card
-# by its URL and serve the old bytes for days, so overwriting og-1.jpg would leave the stale card in
-# circulation exactly where it does the damage. Bump the name, point the five pages' og:image and
-# twitter:image at it (scripts/lint-site.py checks they all name a file that exists), and keep the
-# old file for a release cycle so links already in the wild do not break.
+# WRITE TO A NEW FILENAME WHENEVER THE WORDING OR THE LOGO CHANGES. Messaging apps and social sites
+# cache a card by its URL and serve the old bytes for days, so overwriting the card would leave the
+# stale one in circulation exactly where it does the damage. Bump the name, point the four pages'
+# og:image and twitter:image at it (scripts/lint-site.py checks they all name a file that exists),
+# and keep the old file for a release cycle so links already in the wild do not break. og-1.jpg was
+# the first card, drawn with an icon option the owner did not choose; og-2.jpg carries the site's
+# logo, option 4 (README.md, "The pictures").
 #
 # The renderer is headless Brave on a local file: nothing is fetched. Run scripts/make-images.sh first
-# if the icon or the hero screenshot changed, since the card draws both.
+# if the logo or the hero screenshot changed, since the card draws both.
 set -euo pipefail
 SITE="$(cd "$(dirname "$0")/.." && pwd)"
-OUT="$SITE/${1:-assets/og-1.jpg}"
+OUT="$SITE/${1:-assets/og-2.jpg}"
 BRAVE="/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
 [ -x "$BRAVE" ] || { echo "make-og: headless Brave not found at $BRAVE"; exit 1; }
 

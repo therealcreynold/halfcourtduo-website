@@ -122,6 +122,12 @@ img { max-width: 100%; height: auto; }
   font-size: 19px; font-weight: 800; letter-spacing: .04em; text-decoration: none;
   color: var(--orange); text-shadow: 0 0 10px rgba(255,122,26,.45);
 }
+/* The site's logo beside it: option 4 of the game's icon designs, "Neon Swish", drawn by the game's
+   hcd-art (scripts/make-images.sh). It is the site's mark, not the app's icon, which is option 3. */
+.brand .mark {
+  display: inline-block; width: 30px; height: 30px; margin-right: 10px; vertical-align: middle;
+  border-radius: 7px; box-shadow: 0 0 0 1px rgba(176,141,87,.5);
+}
 .brand span { color: var(--neon); text-shadow: 0 0 10px rgba(46,230,255,.45); }
 .brand:hover { color: var(--orange); }
 .bar nav { display: flex; flex-wrap: wrap; gap: 4px 18px; }
@@ -161,7 +167,7 @@ img { max-width: 100%; height: auto; }
   grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
   padding-block: clamp(36px, 7vw, 72px);
 }
-.hero .icon {
+.hero .logo {
   display: block; width: 88px; height: 88px; border-radius: 20px;
   box-shadow: 0 8px 26px rgba(0,0,0,.5), 0 0 0 1px rgba(176,141,87,.5);
 }
@@ -328,7 +334,7 @@ footer p { margin: 12px auto 0; max-width: 60ch; }
 @media (max-width: 480px) {
   body { font-size: 16px; }
   .wrap { padding-inline: 16px; }
-  .hero .icon { width: 72px; height: 72px; border-radius: 16px; }
+  .hero .logo { width: 72px; height: 72px; border-radius: 16px; }
   .tile { grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; }
   .tile b { height: 54px; font-size: 24px; }
   .tile b.small { font-size: 15px; }

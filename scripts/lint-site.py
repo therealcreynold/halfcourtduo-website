@@ -29,6 +29,9 @@ What it fails on, and why each one is here:
     whose width and height attributes are not the file's real pixel size.
   - a page without the doctype, a viewport, a title, the stylesheet, a canonical URL on
     https://halfcourtduo.com (except the 404), or an og:image naming a file that does not exist.
+  - an og:image whose og:image:width and height are not the file's, and a page without exactly one
+    <link rel=icon> and one <link rel=apple-touch-icon> whose sizes attribute is the file's real size
+    (both are the site's logo; README.md, "The pictures").
 
   THE FILES THAT ARE CONTRACTS:
   - CNAME, app-ads.txt (OWNERDOMAIN and the Google line), robots.txt, sitemap.xml (exactly the four
@@ -220,6 +223,21 @@ def check_pages(problems: list[str]) -> None:
                 url = metas[key]
                 if not url.startswith(prefix) or resolve("/" + url[len(prefix):]) is None:
                     problems.append(f"{name}: {key} {url} does not name a file in this repository")
+                elif key == "og:image":
+                    size = pixel_size(resolve("/" + url[len(prefix):]))
+                    declared = (metas.get("og:image:width"), metas.get("og:image:height"))
+                    if size and declared != (str(size[0]), str(size[1])):
+                        problems.append(f"{name}: og:image says {declared[0]} x {declared[1]}, the file is {size[0]} x {size[1]}")
+        # The favicon and the home screen icon: the site's logo, on every page, at the size it claims.
+        for kind in ("icon", "apple-touch-icon"):
+            found = [a for a in links if a.get("rel") == kind]
+            if len(found) != 1:
+                problems.append(f"{name}: {len(found)} <link rel={kind}>, expected one")
+                continue
+            target, sizes = resolve(found[0].get("href", "")), found[0].get("sizes", "")
+            size = pixel_size(target) if target is not None else None
+            if size and sizes != f"{size[0]}x{size[1]}":
+                problems.append(f"{name}: <link rel={kind}> says sizes={sizes!r}, the file is {size[0]}x{size[1]}")
 
         for tag, a in tags:
             for attr in ("href", "src"):
