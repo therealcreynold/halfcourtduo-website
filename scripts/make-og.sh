@@ -11,9 +11,10 @@
 # cache a card by its URL and serve the old bytes for days, so overwriting the card would leave the
 # stale one in circulation exactly where it does the damage. Bump the name, point the four pages'
 # og:image and twitter:image at it (scripts/lint-site.py checks they all name a file that exists),
-# and keep the old file for a release cycle so links already in the wild do not break. og-1.jpg was
-# the first card, drawn with an icon option the owner did not choose; og-2.jpg carries the site's
-# logo, option 4 (README.md, "The pictures").
+# and keep the old file for a release cycle so links already in the wild do not break. og-2.jpg
+# carries the site's logo, option 4 (README.md, "The pictures"). The exception was og-1.jpg, the
+# first card: it showed an icon option the owner did not choose and had been public for about an hour,
+# so it was deleted the day it was replaced, and scripts/check-live.sh holds it gone.
 #
 # The renderer is headless Brave on a local file: nothing is fetched. Run scripts/make-images.sh first
 # if the logo or the hero screenshot changed, since the card draws both.

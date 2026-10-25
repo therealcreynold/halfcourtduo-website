@@ -134,10 +134,14 @@ headless Brave on a local file (`sips --cropOffset` is unreliable), at pixel row
 committed pictures and written at the top of the script. The share card's words are text in
 `og-card.html`, and it says nothing about availability, so it cannot go stale on launch day. **If its
 wording or its logo ever changes, write it to a new file name** (`og-3.jpg` next) and point the pages
-at that: messaging apps and social sites cache a card by its URL for days. `og-1.jpg` is the first
-card, drawn with an icon option the owner did not choose; no page names it, and it stays published
-(and in `scripts/check-live.sh`) only so a link shared on 25 October still unfurls with a picture.
-Delete it, and its line in `check-live.sh`, after the game's first release.
+at that: messaging apps and social sites cache a card by its URL for days, and keep the old file
+published for a release cycle so links already in the wild keep their picture. The one exception was
+`og-1.jpg`, the first card: it showed option A, an icon option the owner did not choose, and the site
+had been public for about an hour when it was replaced, so it was deleted the same day. A chat app
+that unfurled the link in that hour kept its own copy of the picture; one that fetches again reads
+the page, which names `og-2.jpg`. `scripts/check-live.sh` holds every URL that served option A (the
+first card, `favicon-32.png`, `apple-touch-icon.png`, `icon-256.png`) at 404, and holds the logo and
+the card it serves now to this repository's bytes.
 
 ### The site's logo is not the app's icon
 
@@ -226,9 +230,11 @@ because they are how the site gets rebuilt. Read what is there before redoing an
 
     scripts/check-live.sh
 
-It is the list below, made a script, plus three checks a browser cannot do: the served privacy page is
-byte for byte this repository's, `README.md`, `scripts/` and `_config.yml` are NOT served, and the home
-page agrees with the App Store about whether the game is on sale (see "Launch day"). By hand:
+It is the list below, made a script, plus four checks a browser cannot do: the served privacy page, the
+site's logo at all four sizes and the share card are byte for byte this repository's, the URLs that once
+served an icon option the owner did not choose are 404, `README.md`, `scripts/` and `_config.yml` are
+NOT served, and the home page agrees with the App Store about whether the game is on sale (see "Launch
+day"). By hand:
 
     curl -sSI https://halfcourtduo.com/                 # 200
     curl -sSI https://halfcourtduo.com/privacy/         # 200

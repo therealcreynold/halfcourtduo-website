@@ -14,6 +14,11 @@
 #     deploy of the wrong branch, looks fine from a browser);
 #   - an unknown path serves the styled 404 with a 404 status;
 #   - app-ads.txt is 200, text/plain, at the apex with no redirect, and carries the seller line;
+#   - the site's logo (option 4 of the game's icon designs) and the share card are served byte for byte
+#     as this repository has them, at every size a page names: the favicon, the header mark on every
+#     page, the home screen icon, the hero and the card. The pictures of the icon options the owner did
+#     not choose for the site are NOT served (README.md, "The pictures"); a URL that once carried one
+#     stays a 404;
 #   - plain HTTP and www both land on the HTTPS apex;
 #   - README.md, scripts/ and _config.yml are NOT served (on another property the lint's own word list
 #     was published as a page; _config.yml's exclude list is what prevents it here);
@@ -33,11 +38,25 @@ status() { curl -sS -o /dev/null -w '%{http_code}' --max-time 20 "$1" 2>/dev/nul
 header() { curl -sSI --max-time 20 "$1" 2>/dev/null | tr -d '\r' | awk -v h="$(tr A-Z a-z <<< "$2")" \
     'BEGIN{FS=": "} tolower($1)==h {print $2}' | tail -1; }
 
-# og-1.jpg is the retired share card, still served so links already shared keep a picture (make-og.sh).
-for path in / /privacy/ /support/ /terms/ /app-ads.txt /robots.txt /sitemap.xml /style.css \
-            /assets/og-2.jpg /assets/og-1.jpg /assets/logo-32.png /assets/logo-180.png; do
+for path in / /privacy/ /support/ /terms/ /app-ads.txt /robots.txt /sitemap.xml /style.css; do
     code=$(status "$HOST$path")
     [ "$code" = 200 ] && pass "$path is 200" || fail "$path is $code, expected 200"
+done
+
+# The logo and the card, compared byte for byte: a 200 says a file is there, not which picture it is.
+for path in /assets/logo-32.png /assets/logo-96.png /assets/logo-180.png /assets/logo-256.png \
+            /assets/og-2.jpg; do
+    if curl -sS --fail --max-time 20 "$HOST$path" 2>/dev/null | cmp -s - "$SITE$path"; then
+        pass "$path is this repository's, byte for byte"
+    else
+        fail "$path is missing or differs from the repository's (not deployed, or a stale picture)"
+    fi
+done
+
+# Retired: option A of the icon designs, as the first favicon, home screen icon, hero and share card.
+for path in /assets/og-1.jpg /assets/favicon-32.png /assets/apple-touch-icon.png /assets/icon-256.png; do
+    code=$(status "$HOST$path")
+    [ "$code" = 404 ] && pass "$path (the old icon) is gone" || fail "$path is $code: the old icon is still served"
 done
 
 for path in /privacy /support /terms; do

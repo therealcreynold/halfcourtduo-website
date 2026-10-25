@@ -123,9 +123,13 @@ img { max-width: 100%; height: auto; }
   color: var(--orange); text-shadow: 0 0 10px rgba(255,122,26,.45);
 }
 /* The site's logo beside it: option 4 of the game's icon designs, "Neon Swish", drawn by the game's
-   hcd-art (scripts/make-images.sh). It is the site's mark, not the app's icon, which is option 3. */
+   hcd-art (scripts/make-images.sh). It is the site's mark, not the app's icon, which is option 3.
+   Centred on the CAPITALS: `middle` centres on half the x height, which left it 1.6 px below a wordmark
+   that has no lower case. The image's bottom sits at the baseline plus this offset, so its centre is
+   .36em (half the cap height) above the baseline when the offset is .36em less half its own 30 px. */
 .brand .mark {
-  display: inline-block; width: 30px; height: 30px; margin-right: 10px; vertical-align: middle;
+  display: inline-block; width: 30px; height: 30px; margin-right: 10px;
+  vertical-align: calc(.36em - 15px);
   border-radius: 7px; box-shadow: 0 0 0 1px rgba(176,141,87,.5);
 }
 .brand span { color: var(--neon); text-shadow: 0 0 10px rgba(46,230,255,.45); }
