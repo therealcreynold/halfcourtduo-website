@@ -154,11 +154,12 @@ at 500 and clips it. Then open every slice and read it.
 
 ## Setting it up
 
-**As of 25 October 2026 the repository exists only on the owner's Mac: the public GitHub repository
-has not been created, because the owner has not yet approved making it.** The DNS (step 4) was done
-separately, the same day: `dig @1.1.1.1` then answered with exactly the nine records below, the
-forwarding MX and SPF records still in place, and `https://halfcourtduo.com/` did not yet answer,
-because there was no Pages site behind it. Read what is there before redoing anything
+**DONE 25 October 2026, and live over HTTPS.** The repository `therealcreynold/halfcourtduo-website`
+was created public and pushed; Pages was enabled from `main` at the root with the custom domain
+`halfcourtduo.com`; GitHub's certificate reached `approved` (covering `halfcourtduo.com` and
+`www.halfcourtduo.com`) a few minutes later and `https_enforced` was set; `scripts/check-live.sh` then
+printed 25 PASS and "clean". The DNS (step 4) was set at Namecheap the same day. The steps stay
+because they are how the site gets rebuilt. Read what is there before redoing anything
 (`dig +short halfcourtduo.com A`, `dig +short www.halfcourtduo.com CNAME`, or `scripts/dns.py` without
 `--apply`). In order:
 
@@ -272,9 +273,7 @@ game went on sale. So `scripts/check-live.sh` asks Apple's public lookup whether
 
 ## Left for a human, deliberately
 
-- **Approving the public repository**, then steps 1 to 3, 5 and 6 above (step 4, the DNS, is done).
 - **AdMob's "Add store" link**, once the listing is live (decision 220 in the game repository). The
-  GDPR and US state consent messages already exist and name the privacy URL above, so they point at a
-  dead page until step 6 is clean.
+  GDPR and US state consent messages already exist and name the privacy URL above, which is live.
 - **The icon choice** (decisions 27 and 65), then `scripts/make-images.sh` and `scripts/make-og.sh`.
 - **Any quote from a player.** Absent on purpose: nobody outside has played it.
