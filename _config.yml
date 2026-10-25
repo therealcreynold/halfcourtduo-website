@@ -1,0 +1,32 @@
+# What GitHub Pages is allowed to publish.
+#
+# This file exists to stop the site publishing things that are not the site. GitHub Pages deploys
+# every file in a repository by default, so a README, a note to self, a scratch file or a word list
+# committed here is a public page the moment it is pushed. That has bitten this owner before, on
+# another property, in the worst possible way: a checked-in list of terms that a lint script was
+# written to keep OFF the public site was itself served as prose, HTTP 200, text/plain, on the domain
+# the App Store listing pointed at.
+#
+# `.nojekyll` is not the answer and cannot be: with Jekyll off there is no ignore list at all, so
+# there is no way to keep a file in the repository and out of the public directory. Dotfiles are not
+# a way round it either; only `.git` is special cased by GitHub.
+#
+# So Jekyll is on and told to publish nothing but the site. That is safe for these particular files:
+# Jekyll renders only files carrying YAML front matter, and every page here begins with
+# `<!doctype html>` with no front matter, so all of them are copied byte for byte. There is no
+# Liquid tag opener anywhere in the published files either; scripts/lint-site.py fails on one and
+# on front matter, so that stays true after any edit.
+#
+# `scripts` holds the lint (with the protected names it looks for, spelled in pieces), the image and
+# share card generators, the DNS helper and the live checks. None of it is the site.
+#
+# ANYTHING ADDED TO THIS REPOSITORY IS PUBLIC THE MOMENT IT IS PUSHED UNLESS IT IS NAMED HERE. Add
+# it here first. And after any change to this file, re-run scripts/check-live.sh: an excluded page
+# and a broken page look identical from a terminal, and the privacy URL is compiled into the app.
+exclude:
+  - scripts
+  - README.md
+
+# Nothing else. No theme, no plugin, no layout, no collection. Every page is hand-written HTML and is
+# meant to stay that way, because the privacy policy is a document Apple and Google hold the owner
+# to, and a templating layer between the words and the reader is a way to be surprised by it.

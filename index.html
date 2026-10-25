@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Half Court Duo</title>
+<meta name="description" content="An arcade basketball machine that lives in your folded phone. Stand it up like a laptop and every shot sails up and over the fold. Sixty second rounds, Heat, a bonus period, a Daily Shootout and Pass &amp; Play. Free, with ads.">
+<meta name="theme-color" content="#0B1020">
+<link rel="canonical" href="https://halfcourtduo.com/">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<!-- Share cards. A pasted link with no og:image unfurls as a grey box with a domain in it. The card
+     is assets/og-1.jpg, rendered by scripts/make-og.sh from scripts/og-card.html, where its words are
+     text a grep can find. It says nothing about availability, so it cannot go stale on launch day. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Half Court Duo">
+<meta property="og:url" content="https://halfcourtduo.com/">
+<meta property="og:title" content="Half Court Duo">
+<meta property="og:description" content="An arcade basketball machine that lives in your folded phone. Stand it up like a laptop and every shot sails up and over the fold.">
+<meta property="og:image" content="https://halfcourtduo.com/assets/og-1.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Half Court Duo neon sign beside a phone folded like a laptop, a ball on fire flying from the lower half over the fold into the hoop on the upper half.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Half Court Duo">
+<meta name="twitter:description" content="An arcade basketball machine that lives in your folded phone. Stand it up like a laptop and every shot sails up and over the fold.">
+<meta name="twitter:image" content="https://halfcourtduo.com/assets/og-1.jpg">
+<link rel="stylesheet" href="/style.css">
+<!-- Served at https://halfcourtduo.com, the apex. This is the App Store Connect Marketing URL, which is
+     also the path every ad network's crawler walks to reach /app-ads.txt, so it must keep working and
+     must keep being the apex. Every sentence below is the App Store listing's (docs/APP-STORE-LISTING.md
+     in the game repository), which was checked claim by claim against the build. See README.md. -->
+</head>
+<body>
+<a class="skip" href="#main">Skip to the page</a>
+
+<header class="bar"><div class="wrap">
+  <a class="brand" href="/">HALF COURT <span>DUO</span></a>
+  <nav aria-label="Site">
+    <a href="/support/">Support</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/terms/">Terms</a>
+  </nav>
+</div></header>
+
+<div class="hero">
+  <div class="bulbs" aria-hidden="true"></div>
+  <div class="wrap">
+    <div>
+      <img class="icon" src="/assets/icon-256.png" width="256" height="256" alt="The Half Court Duo icon: a bulb lit hoop and a ball arcing up from a glowing pad.">
+      <h1>Half Court <span>Duo</span></h1>
+      <p class="tag">Fold it. Flick it. Swish.</p>
+      <p class="lede"><strong>An arcade basketball machine that lives in your folded phone.</strong>
+      Stand it up like a laptop: the hoop is on the raised half, you flick from the half on the table,
+      and every shot sails up and over the fold.</p>
+      <p class="pill">Designed for iPhone Duo</p>
+      <p class="status"><b>Coming to the App Store.</b> Free, with ads.</p>
+      <p class="note">Plays on any iPhone with iOS 27.1 or later. Best folded like a laptop.</p>
+    </div>
+    <figure>
+      <img src="/assets/shots/01-hero.jpg" width="640" height="769" alt="A phone folded like a laptop, the arcade cabinet on the raised half and the court on the half below. A ball on fire flies up from the pad, over the fold, toward the hoop, with HEAT and SWISH lit either side of the backboard.">
+    </figure>
+  </div>
+  <div class="bulbs" aria-hidden="true"></div>
+  <div class="rail" aria-hidden="true"></div>
+</div>
+
+<main id="main">
+
+<section><div class="wrap">
+  <h2>Sixty seconds <em>on the clock</em></h2>
+  <p class="sub">Flick, swish, flick again.</p>
+  <p>The next ball racks under half a second after the last one leaves your thumb, and up to three
+  can be in the air at once. Flick up from the ball on the pad; a tap does nothing.</p>
+  <ul class="tiles" aria-label="How it scores">
+    <li class="tile"><b aria-hidden="true">2</b><p><strong>Two points a basket.</strong></p></li>
+    <li class="tile"><b aria-hidden="true">+1</b><p><strong>Nothing but net is worth one more.</strong>
+      A basket that never touches the rim is a swish.</p></li>
+    <li class="tile"><b aria-hidden="true">3</b><p><strong>The last fifteen seconds.</strong> The
+      backboard turns red and every basket thrown then is worth three.</p></li>
+    <li class="tile"><b class="amber" aria-hidden="true">+1</b><p><strong>Heat.</strong> Make three
+      in a row and the ball catches fire: every basket after that is worth one more, until you miss.</p></li>
+    <li class="tile"><b class="amber small" aria-hidden="true">20 40</b><p><strong>A hoop that
+      moves.</strong> At 20 points it starts to slide; at 40 it moves faster and the backboard tilts.</p></li>
+    <li class="tile"><b class="small" aria-hidden="true">0:00</b><p><strong>Beat the
+      buzzer.</strong> A shot in the air when the buzzer goes still counts.</p></li>
+  </ul>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Four ways <em>to play</em></h2>
+  <p class="sub">All four are on the main menu, and none of them needs an account.</p>
+  <div class="modes">
+    <div class="mode">
+      <h3>Arcade</h3>
+      <p>Sixty seconds, as many baskets as you can.</p>
+    </div>
+    <div class="mode">
+      <h3>Streak</h3>
+      <p>No clock. Miss once and it is over.</p>
+    </div>
+    <div class="mode">
+      <h3>Daily Shootout</h3>
+      <p>One hoop for everyone each day. The same moving pattern and the same two bonus windows for
+      every player, and a fresh leaderboard at midnight UTC.</p>
+    </div>
+    <div class="mode">
+      <h3>Pass &amp; Play</h3>
+      <p>Two players, one phone, thirty seconds each. Hand it across the table and see who wins.</p>
+    </div>
+  </div>
+</div></section>
+
+<section><div class="wrap split">
+  <div>
+    <h2>Every way <em>you hold it</em></h2>
+    <p class="sub">Folded like a laptop is the best seat in the house, and it plays every other way
+    as well.</p>
+    <ul class="poses">
+      <li><b>Folded like a laptop.</b> The hoop on the raised half, the court on the half on the
+      table, and the ball crossing the fold on every shot.</li>
+      <li><b>Open flat.</b> The fold becomes a brass rail across the middle, and every shot flies
+      over it.</li>
+      <li><b>On its side, like a book.</b> A side view of the same machine, and you throw toward the
+      hoop across the fold. Turning the folded phone between laptop and book never pauses a round.</li>
+      <li><b>Closed.</b> The whole game on the outside screen, with the brass rail where the fold
+      would be.</li>
+      <li><b>A phone without a fold.</b> The same rail across the middle of the screen, and the same
+      game.</li>
+    </ul>
+    <p>Open it flat in the middle of a round and the game waits for you to fold it back, or carry on
+    flat with Resume.</p>
+  </div>
+  <div class="pair">
+    <figure>
+      <img src="/assets/poses/closed.jpg" width="560" height="720" loading="lazy" alt="The closed phone playing on its outside screen: the cabinet above a brass rail, a ball on fire crossing the rail toward the hoop.">
+      <figcaption>Closed, on the outside screen</figcaption>
+    </figure>
+    <figure>
+      <img src="/assets/poses/no-fold.jpg" width="400" height="802" loading="lazy" alt="An ordinary phone playing the same game, the brass rail drawn across the middle of the screen where a fold would be.">
+      <figcaption>A phone without a fold</figcaption>
+    </figure>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>A real cabinet, <em>drawn in code</em></h2>
+  <p>Chasing bulbs, a neon sign, LED scoreboards, a net that swishes and a ball that catches fire.
+  Every light is drawn in code and every sound is synthesized: the clank of the rim, the horn at the
+  buzzer, the crowd when you heat up. Feel the rim and the swish through your fingers too.</p>
+  <p>No sample packs and no downloaded art: the bulbs, the net, the ball, the lettering on the signs
+  and every sound are made by the game's own code.</p>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Game <em>Center</em></h2>
+  <p class="sub">Leaderboards for Arcade, today's Arcade, Streak and the Daily Shootout, and fifteen
+  achievements. It is optional: no account is needed to play, and Pass &amp; Play is never posted.</p>
+  <ul class="badges">
+    <li><img src="/assets/badges/first_bucket.jpg" width="192" height="192" loading="lazy" alt=""><b>First Bucket</b><span>Make your first basket.</span></li>
+    <li><img src="/assets/badges/first_swish.jpg" width="192" height="192" loading="lazy" alt=""><b>Nothing but Net</b><span>Make a basket without touching the rim.</span></li>
+    <li><img src="/assets/badges/heat_check.jpg" width="192" height="192" loading="lazy" alt=""><b>Heat Check</b><span>Make three in a row and set the ball on fire.</span></li>
+    <li><img src="/assets/badges/run_8.jpg" width="192" height="192" loading="lazy" alt=""><b>Firestorm</b><span>Make eight in a row in one round.</span></li>
+    <li><img src="/assets/badges/points_50.jpg" width="192" height="192" loading="lazy" alt=""><b>Half Century</b><span>Score 50 points in one 60 second round.</span></li>
+    <li><img src="/assets/badges/points_100.jpg" width="192" height="192" loading="lazy" alt=""><b>Triple Digits</b><span>Score 100 points in one 60 second round.</span></li>
+    <li><img src="/assets/badges/swishes_5.jpg" width="192" height="192" loading="lazy" alt=""><b>Net Burner</b><span>Make five swishes in one 60 second round.</span></li>
+    <li><img src="/assets/badges/bonus_5.jpg" width="192" height="192" loading="lazy" alt=""><b>Bonus Hunter</b><span>Make five baskets in bonus time in one 60 second round.</span></li>
+    <li><img src="/assets/badges/makes_25.jpg" width="192" height="192" loading="lazy" alt=""><b>Sharpshooter</b><span>Make 25 baskets in one 60 second round.</span></li>
+    <li><img src="/assets/badges/streak_10.jpg" width="192" height="192" loading="lazy" alt=""><b>Ten Straight</b><span>Make ten in a row in Streak mode.</span></li>
+    <li><img src="/assets/badges/streak_25.jpg" width="192" height="192" loading="lazy" alt=""><b>Unbroken</b><span>Make 25 in a row in Streak mode.</span></li>
+    <li><img src="/assets/badges/daily_1.jpg" width="192" height="192" loading="lazy" alt=""><b>Shootout Debut</b><span>Finish a Daily Shootout.</span></li>
+    <li><img src="/assets/badges/daily_7.jpg" width="192" height="192" loading="lazy" alt=""><b>Seven Day Shooter</b><span>Finish the Daily Shootout on seven different days.</span></li>
+    <li><img src="/assets/badges/rounds_25.jpg" width="192" height="192" loading="lazy" alt=""><b>Regular</b><span>Finish 25 rounds.</span></li>
+    <li><img src="/assets/badges/rounds_100.jpg" width="192" height="192" loading="lazy" alt=""><b>Arcade Rat</b><span>Finish 100 rounds.</span></li>
+  </ul>
+</div></section>
+
+<section><div class="wrap">
+  <h2>About the ads, <em>plainly</em></h2>
+  <div class="callout">
+    <p>Half Court Duo is free. A banner sits under the menu and the results, never during a round. A
+    full screen ad can follow a finished round: at most one every third round, at least 90 seconds
+    apart, and none in your first session. At the buzzer of an Arcade or Daily Shootout round you can
+    choose to watch a video for thirty more seconds, once a round; that round counts for your own best
+    but not for the leaderboards.</p>
+    <p><strong>Remove Ads</strong>, one purchase, removes the banner and the between-round ads. It does
+    <strong>NOT</strong> remove the optional +30 s videos, which stay, and are always your choice.
+    Nothing else is for sale: no coins, no energy, no loot boxes.</p>
+  </div>
+  <p>What the advertising collects, and every choice you have about it, is in the
+  <a href="/privacy/">privacy policy</a>.</p>
+</div></section>
+
+<section><div class="wrap">
+  <h2>What it <em>looks like</em></h2>
+  <p class="sub">Every picture below is the real game, captured from the running app and frozen on one
+  moment. Only the folded phone around it is drawn.</p>
+  <div class="well">
+    <ul class="shots">
+      <li><img src="/assets/shots/02-swish.jpg" width="640" height="769" loading="lazy" alt="A clean swish: the ball dropping out of the net, SWISH lit beside the backboard, and the next ball on its way up from the pad."></li>
+      <li><img src="/assets/shots/03-bonus.jpg" width="640" height="769" loading="lazy" alt="The final fifteen seconds: the backboard red and tilted, BONUS x3 lit across the scoreboard, a ball rising toward the rim."></li>
+      <li><img src="/assets/shots/04-daily.jpg" width="640" height="769" loading="lazy" alt="A Daily Shootout bonus window: BONUS on the scoreboard, the backboard lit red, a ball in the air."></li>
+      <li><img src="/assets/shots/05-winner.jpg" width="640" height="769" loading="lazy" alt="A Pass and Play winner card: Maya wins with 32 over Jonah's 23, with Play Again, Share and Menu buttons."></li>
+      <li><img src="/assets/shots/06-results.jpg" width="640" height="769" loading="lazy" alt="Arcade results: NEW BEST, a score of 57, 20 of 31 made at 65 percent, with Play Again, Share and Menu."></li>
+      <li><img src="/assets/shots/07-menu.jpg" width="640" height="769" loading="lazy" alt="The main menu over the cabinet, the LED sign reading FLICK TO SHOOT, with Play, Daily Shootout, Streak, Pass and Play, Settings and Remove Ads."></li>
+    </ul>
+  </div>
+  <p class="cta">Made for anyone who ever fed a basketball machine on a boardwalk. Not a children's app,
+  and not in the Kids category.</p>
+  <p>Questions? <a href="/support/">Support</a> has the answers we already know about and the address
+  for the rest.</p>
+</div></section>
+
+</main>
+
+<footer><div class="wrap">
+  <nav aria-label="Footer">
+    <a href="/support/">Support</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a>
+  </nav>
+  <p>&copy; 2026 CR Industries LLC</p>
+</div></footer>
+
+</body>
+</html>

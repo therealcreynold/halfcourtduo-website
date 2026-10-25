@@ -1,0 +1,60 @@
+<!doctype html>
+<!-- THE SHARE CARD, AS SOMETHING THAT CAN BE REGENERATED.
+
+     assets/og-1.jpg is this page, rendered at 1200 x 630 by scripts/make-og.sh. Its words live here as
+     text, where a grep finds them and a diff shows them changing; a PNG's words are invisible to both,
+     which is how a sibling site's card went on announcing a launch date after the launch. So the card
+     says nothing about availability or dates at all: only the game's name, its own tagline and the
+     platform statement, none of which changes on launch day.
+
+     The pictures are the site's own assets (the icon and the hero screenshot), referenced relatively so
+     the render is a local file with nothing fetched. No double hyphen inside this comment, ever. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Share card</title>
+<style>
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    position: relative;
+    font-family: ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    color: #F4F1E8;
+    background:
+      radial-gradient(55% 80% at 80% 55%, rgba(255,122,26,.28), transparent 70%),
+      radial-gradient(40% 60% at 8% 12%, rgba(46,230,255,.10), transparent 70%),
+      linear-gradient(180deg, #151C36, #0B1020 75%);
+  }
+  .bulbs { position: absolute; left: 0; right: 0; height: 22px;
+    background:
+      radial-gradient(circle at 18px 11px, #FFF4D6 0 2.4px, #FFC860 3.8px, rgba(255,200,96,.32) 6.5px, transparent 10px) 0 0 / 72px 22px repeat-x,
+      radial-gradient(circle at 54px 11px, #5A4626 0 3.4px, #3B2E1A 5px, transparent 6.4px) 0 0 / 72px 22px repeat-x; }
+  .top { top: 10px; } .bottom { bottom: 30px; }
+  .rail { position: absolute; left: 0; right: 0; bottom: 0; height: 18px;
+    background: linear-gradient(180deg, #E2C58E, #B08D57 40%, #6E5530); }
+  .text { position: absolute; left: 72px; top: 92px; width: 640px; }
+  .icon { width: 112px; height: 112px; border-radius: 26px; display: block;
+    box-shadow: 0 10px 30px rgba(0,0,0,.55), 0 0 0 2px rgba(176,141,87,.6); }
+  h1 { margin: 30px 0 0; font-size: 88px; line-height: .95; font-weight: 900; letter-spacing: .01em;
+    color: #FF7A1A; text-shadow: 0 0 4px #FFD2A8, 0 0 20px rgba(255,122,26,.9), 0 0 50px rgba(255,90,0,.55); }
+  h1 span { color: #2EE6FF; text-shadow: 0 0 4px #C8F8FF, 0 0 20px rgba(46,230,255,.9), 0 0 50px rgba(46,230,255,.5); }
+  .tag { margin: 22px 0 0; font-size: 42px; font-weight: 800; color: #FFC860; }
+  .pill { display: inline-block; margin: 26px 0 0; padding: 10px 22px; border-radius: 999px;
+    border: 2px solid rgba(46,230,255,.6); background: rgba(46,230,255,.08);
+    font-size: 24px; font-weight: 700; color: #2EE6FF; }
+  .shot { position: absolute; right: 58px; top: 44px; height: 528px; border-radius: 26px;
+    border: 2px solid rgba(176,141,87,.4); box-shadow: 0 22px 40px rgba(0,0,0,.6); }
+</style>
+</head>
+<body>
+  <div class="bulbs top"></div>
+  <div class="text">
+    <img class="icon" src="../assets/icon-256.png" alt="">
+    <h1>HALF COURT <span>DUO</span></h1>
+    <p class="tag">Fold it. Flick it. Swish.</p>
+    <p class="pill">Designed for iPhone Duo</p>
+  </div>
+  <img class="shot" src="../assets/shots/01-hero.jpg" alt="">
+  <div class="bulbs bottom"></div>
+  <div class="rail"></div>
+</body>
+</html>
