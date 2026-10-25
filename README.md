@@ -29,8 +29,8 @@ to.
 `docs/DECISIONS.md` in the game repository (`../half_court_duo`), not against the brief:
 
 - **The privacy page is `docs/PRIVACY-POLICY.md`, word for word.** Every heading, sentence and list item
-  is that file's, in its order, turned into HTML; links were added to the URLs it cites and to the
-  contact address, and nothing else. The game repository keeps the policy beside the privacy label and
+  is that file's, in its order, turned into HTML; links were added to the two Google URLs it cites, to
+  the words "Apple's privacy policy" (Apple's own page), and to the contact address, and nothing else. The game repository keeps the policy beside the privacy label and
   the privacy manifest and moves all three in one commit, so **the policy changes there first**, then
   here. `scripts/lint-site.py` compares the two word by word whenever the game repository sits beside
   this one, and fails on any difference.
@@ -42,8 +42,10 @@ to.
   spells them ("Restore Purchases", "Ads are removed on this device. Thank you.", "Fold to continue",
   "Free to play, paid for by ads", "Watch for +30 s"), so a player can find the row it names.
 - **The contact address is info@crindustries.xyz**, the one every sibling game and the app itself use
-  (`MoneyLinks.supportAddress`). Nothing here needs email at halfcourtduo.com, so no forwarding is set up
-  for the domain.
+  (`MoneyLinks.supportAddress`). Nothing here needs email at halfcourtduo.com, so no forwarding address
+  was configured. The domain does carry Namecheap's default email forwarding records (five
+  `eforward*.registrar-servers.com` MX records and an SPF `TXT`, seen with `dig` on 25 October 2026);
+  they are not GitHub's business and are left alone.
 
 If the game changes, these pages change in the same pass, and each page's "Last updated" moves only when
 the page was re-read against the code: a fresh date over stale prose asserts a re-read that did not
@@ -81,8 +83,9 @@ mediation. The file's comments name no other property of the owner's: it is serv
 and every ad network is guaranteed to read it.
 
 **`privacy/index.html`** is described above. Its URL is in the app, in App Store Connect, and in the
-AdMob GDPR and US state consent messages the owner still has to create; all three must say
-`https://halfcourtduo.com/privacy/`.
+AdMob GDPR and US state consent messages, which were published on 25 October 2026 naming it (the game
+repository's decision 220); all three say `https://halfcourtduo.com/privacy/`, and those consent forms
+link a dead page until this site is live.
 
 ## Words that must never appear on this site
 
@@ -152,8 +155,10 @@ at 500 and clips it. Then open every slice and read it.
 ## Setting it up
 
 **As of 25 October 2026 the repository exists only on the owner's Mac: the public GitHub repository
-has not been created, because the owner has not yet approved making it.** The DNS (step 4) was being
-pointed at GitHub Pages separately, on the same day; read what is there before redoing it
+has not been created, because the owner has not yet approved making it.** The DNS (step 4) was done
+separately, the same day: `dig @1.1.1.1` then answered with exactly the nine records below, the
+forwarding MX and SPF records still in place, and `https://halfcourtduo.com/` did not yet answer,
+because there was no Pages site behind it. Read what is there before redoing anything
 (`dig +short halfcourtduo.com A`, `dig +short www.halfcourtduo.com CNAME`, or `scripts/dns.py` without
 `--apply`). In order:
 
@@ -166,7 +171,8 @@ pointed at GitHub Pages separately, on the same day; read what is there before r
 2. **Settings, Pages**: source "Deploy from a branch", branch `main`, folder `/ (root)`.
 3. **Settings, Pages, Custom domain**: `halfcourtduo.com`. GitHub writes a `CNAME` file; one is already
    committed here, so it should simply agree.
-4. **DNS at Namecheap**, where halfcourtduo.com is registered. Delete the parking records Namecheap adds
+4. **DNS at Namecheap**, where halfcourtduo.com is registered (done on 25 October 2026; kept here for a
+   rebuild). Delete the parking records Namecheap adds
    to a new domain (on the siblings' domains they were a `CNAME www` to `parkingpage.namecheap.com` and a
    `URL Redirect @`), then add these nine. An apex domain needs A and AAAA records rather than a CNAME:
 
@@ -266,8 +272,9 @@ game went on sale. So `scripts/check-live.sh` asks Apple's public lookup whether
 
 ## Left for a human, deliberately
 
-- **Approving the public repository**, then steps 1 to 6 above.
-- **The AdMob consent messages** (GDPR and US states), which need the privacy URL above to resolve, and
-  AdMob's "Add store" link once the listing is live (decision 220 in the game repository).
+- **Approving the public repository**, then steps 1 to 3, 5 and 6 above (step 4, the DNS, is done).
+- **AdMob's "Add store" link**, once the listing is live (decision 220 in the game repository). The
+  GDPR and US state consent messages already exist and name the privacy URL above, so they point at a
+  dead page until step 6 is clean.
 - **The icon choice** (decisions 27 and 65), then `scripts/make-images.sh` and `scripts/make-og.sh`.
 - **Any quote from a player.** Absent on purpose: nobody outside has played it.
