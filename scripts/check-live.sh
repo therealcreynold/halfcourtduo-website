@@ -3,7 +3,7 @@
 #
 #     scripts/check-live.sh
 #
-# Network, read only: curl against https://halfcourtduo.com and one App Store lookup. Changes nothing.
+# Network, read only: curl against https://hingehoops.com and one App Store lookup. Changes nothing.
 # Run it after every push, after any change to _config.yml, and on the day the game goes on sale.
 # Every line it prints is PASS or FAIL; it exits non-zero on any FAIL.
 #
@@ -28,8 +28,8 @@
 #     and fails when the home page disagrees, in either direction.
 set -uo pipefail
 SITE="$(cd "$(dirname "$0")/.." && pwd)"
-HOST="https://halfcourtduo.com"
-APPLE_ID="6826691353"          # App Store Connect's Apple ID for Half Court Duo (docs/STATUS.md)
+HOST="https://hingehoops.com"
+APPLE_ID="6826691353"          # App Store Connect's Apple ID for Hinge Hoops (docs/STATUS.md)
 fails=0
 pass() { printf 'PASS %s\n' "$1"; }
 fail() { printf 'FAIL %s\n' "$1"; fails=$((fails + 1)); }
@@ -45,7 +45,7 @@ done
 
 # The logo and the card, compared byte for byte: a 200 says a file is there, not which picture it is.
 for path in /assets/logo-32.png /assets/logo-96.png /assets/logo-180.png /assets/logo-256.png \
-            /assets/og-2.jpg; do
+            /assets/og-3.jpg; do
     if curl -sS --fail --max-time 20 "$HOST$path" 2>/dev/null | cmp -s - "$SITE$path"; then
         pass "$path is this repository's, byte for byte"
     else
@@ -58,6 +58,9 @@ for path in /assets/og-1.jpg /assets/favicon-32.png /assets/apple-touch-icon.png
     code=$(status "$HOST$path")
     [ "$code" = 404 ] && pass "$path (the old icon) is gone" || fail "$path is $code: the old icon is still served"
 done
+# Retired: the second share card, which carried the game's first name (README.md, "The pictures").
+code=$(status "$HOST/assets/og-2.jpg")
+[ "$code" = 404 ] && pass "/assets/og-2.jpg (the old name) is gone" || fail "/assets/og-2.jpg is $code: the old name is still served"
 
 for path in /privacy /support /terms; do
     code=$(status "$HOST$path"); loc=$(header "$HOST$path" location)
@@ -85,9 +88,9 @@ else
     fail "app-ads.txt does not carry the Google seller line"
 fi
 
-loc=$(header "http://halfcourtduo.com/" location)
+loc=$(header "http://hingehoops.com/" location)
 [ "$loc" = "$HOST/" ] && pass "http:// redirects to the HTTPS apex" || fail "http:// goes to '$loc'"
-loc=$(header "https://www.halfcourtduo.com/" location)
+loc=$(header "https://www.hingehoops.com/" location)
 [ "$loc" = "$HOST/" ] && pass "www redirects to the apex" || fail "www goes to '$loc'"
 
 for path in /README.md /scripts/lint-site.py /scripts/check-live.sh /_config.yml /.gitignore; do
@@ -101,11 +104,11 @@ count=$(curl -sS --max-time 20 "https://itunes.apple.com/lookup?id=$APPLE_ID" 2>
 says_coming=$(grep -c "Coming to the App Store" "$SITE/index.html")
 links_store=$(grep -c "apps.apple.com/app/id$APPLE_ID" "$SITE/index.html")
 if [ -z "$count" ]; then
-    fail "could not ask the App Store whether Half Court Duo is on sale"
+    fail "could not ask the App Store whether Hinge Hoops is on sale"
 elif [ "$count" -gt 0 ] && [ "$says_coming" -gt 0 ]; then
-    fail "Half Court Duo is ON SALE and index.html still says 'Coming to the App Store'. README.md, 'Launch day'."
+    fail "Hinge Hoops is ON SALE and index.html still says 'Coming to the App Store'. README.md, 'Launch day'."
 elif [ "$count" -gt 0 ] && [ "$links_store" -eq 0 ]; then
-    fail "Half Court Duo is on sale and index.html has no link to it. README.md, 'Launch day'."
+    fail "Hinge Hoops is on sale and index.html has no link to it. README.md, 'Launch day'."
 elif [ "$count" -eq 0 ] && [ "$links_store" -gt 0 ]; then
     fail "index.html links to the App Store page of an app that is not on sale"
 else

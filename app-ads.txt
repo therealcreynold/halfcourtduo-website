@@ -1,12 +1,12 @@
-# app-ads.txt for halfcourtduo.com
+# app-ads.txt for hingehoops.com
 #
-# Advertising networks crawl this file to confirm that whoever is selling advertising inside Half
-# Court Duo is allowed to. Without a verified file the better-paying programmatic demand does not
+# Advertising networks crawl this file to confirm that whoever is selling advertising inside Hinge
+# Hoops is allowed to. Without a verified file the better-paying programmatic demand does not
 # bid, and an unverified file means limited serving rather than merely lower prices.
 #
 # THE GOOGLE LINE BELOW IS THE PUBLISHER ACCOUNT'S, NOT THE APP'S. app-ads.txt authorises a seller
 # account, and every game this developer publishes sells through the same AdMob publisher account,
-# pub-5706069574815967. Half Court Duo was added to that account on 2026-10-25 as AdMob app
+# pub-5706069574815967. Hinge Hoops was added to that account on 2026-10-25 as AdMob app
 # ca-app-pub-5706069574815967~8638154791. The line is byte for byte the one AdMob's own "Set up
 # app-ads.txt" dialog generates for that account, carried here unchanged rather than typed. Once the
 # AdMob app is linked to the live store listing, open that dialog for it and confirm the line still
@@ -14,7 +14,7 @@
 #
 # Do not type a seller line, and do not guess one: a wrong DIRECT line authorises a seller that is
 # not used, which is worse than a missing one, because it looks verified and is not. The same rule
-# holds for every other network: Half Court Duo ships on Google AdMob alone, with no mediation and
+# holds for every other network: Hinge Hoops ships on Google AdMob alone, with no mediation and
 # no partner bidding, so add another network's lines only when that network is genuinely enabled in
 # the shipping build, pasted from that network's own dashboard.
 #
@@ -25,7 +25,7 @@
 
 # The IAB variable naming the business that owns this inventory. It has to be the domain set as the
 # App Store Connect Marketing URL, because that link is the path every crawler walks to get here: the
-# apex, https://halfcourtduo.com, with no scheme and no path.
-OWNERDOMAIN=halfcourtduo.com
+# apex, https://hingehoops.com, with no scheme and no path.
+OWNERDOMAIN=hingehoops.com
 
 google.com, pub-5706069574815967, DIRECT, f08c47fec0942fa0

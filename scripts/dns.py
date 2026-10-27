@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Points halfcourtduo.com at GitHub Pages, without throwing away anything else.
+"""Points hingehoops.com at GitHub Pages, without throwing away anything else.
 
 Ported from the sibling site's helper, unchanged but for the domain. Namecheap has no "add one record"
 call. `namecheap.domains.dns.setHosts` **replaces every host record on the domain**, so the naive
@@ -38,7 +38,7 @@ import xml.etree.ElementTree as ET
 API = "https://api.namecheap.com/xml.response"
 NS = {"nc": "http://api.namecheap.com/xml.response"}
 
-SLD, TLD = "halfcourtduo", "com"
+SLD, TLD = "hingehoops", "com"
 
 # GitHub Pages, from their own documentation. An apex domain cannot be a CNAME, which is why
 # there are eight of these rather than one.

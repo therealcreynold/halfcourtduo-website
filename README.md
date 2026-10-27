@@ -1,7 +1,14 @@
-# halfcourtduo.com
+# hingehoops.com
 
-The website for Half Court Duo, served by GitHub Pages. Four pages, a 404, one stylesheet, no build
+The website for Hinge Hoops, served by GitHub Pages. Four pages, a 404, one stylesheet, no build
 step, no framework and no JavaScript: everything here is the file that gets served.
+
+**The game was renamed on 27 October 2026.** It was Half Court Duo, at halfcourtduo.com, until App
+Review rejected 1.0 (6) under guideline 5.2.5: "Duo" in the name traded on Apple's device name. The
+owner chose Hinge Hoops and the domain hingehoops.com (the game repository's decisions 340 to 343), and
+this repository says so everywhere a visitor or a crawler reads. The repository keeps its name
+(`therealcreynold/halfcourtduo-website`), as the game keeps its bundle id, because neither is shown to
+a player; the old name may appear only in places like this one, which are not published.
 
 This is also the **only** copy. It does not live inside the game repository under `site/`, because the
 two would drift the first time either was edited, and here that matters more than usual: the privacy
@@ -42,8 +49,8 @@ to.
   spells them ("Restore Purchases", "Ads are removed on this device. Thank you.", "Fold to continue",
   "Free to play, paid for by ads", "Watch for +30 s"), so a player can find the row it names.
 - **The contact address is info@crindustries.xyz**, the one every sibling game and the app itself use
-  (`MoneyLinks.supportAddress`). Nothing here needs email at halfcourtduo.com, so no forwarding address
-  was configured. The domain does carry Namecheap's default email forwarding records (five
+  (`MoneyLinks.supportAddress`). Nothing here needs email at hingehoops.com, so no forwarding address
+  is configured. The old domain carried Namecheap's default email forwarding records (five
   `eforward*.registrar-servers.com` MX records and an SPF `TXT`, seen with `dig` on 25 October 2026);
   they are not GitHub's business and are left alone.
 
@@ -54,7 +61,7 @@ happen.
 ## Why the pages are directories, with the trailing slash
 
 `privacy/index.html` rather than `privacy.html`, and every link written as `/privacy/`, because the app
-links to `https://halfcourtduo.com/privacy/` and that exact string, slash included, is compiled into the
+links to `https://hingehoops.com/privacy/` and that exact string, slash included, is compiled into the
 binary and typed into App Store Connect. A directory with an `index.html` serves at that URL on every
 static host there is; `/privacy` without the slash is a 301 to it on GitHub Pages, which is harmless but
 is a redirect, so nothing here links that way. If `/privacy/` ever 404s, the app ships with a dead
@@ -73,7 +80,7 @@ that.
 
 **Its Google line is the same one the sibling games' sites carry, byte for byte, because it is the same
 owner and the same AdMob publisher account**, pub-5706069574815967. `app-ads.txt` authorises a seller
-account, not an app, and Half Court Duo was added to that account on 2026-10-25 as AdMob app
+account, not an app, and the game (then Half Court Duo) was added to that account on 2026-10-25 as AdMob app
 `ca-app-pub-5706069574815967~8638154791` (the game repository's decision 220). Once that AdMob app is
 linked to the live store listing, open AdMob's "Set up app-ads.txt" dialog for it and confirm the line;
 if it ever differs, the dialog wins. A wrong `DIRECT` line authorises a seller that is not used, which
@@ -84,8 +91,9 @@ and every ad network is guaranteed to read it.
 
 **`privacy/index.html`** is described above. Its URL is in the app, in App Store Connect, and in the
 AdMob GDPR and US state consent messages, which were published on 25 October 2026 naming it (the game
-repository's decision 220); all three say `https://halfcourtduo.com/privacy/`, and those consent forms
-link a dead page until this site is live.
+repository's decision 220). The app and App Store Connect say `https://hingehoops.com/privacy/` from
+build 1.0 (7) (decision 343); the consent messages were published naming the old domain's
+`https://halfcourtduo.com/privacy/`, and must be edited in AdMob to the new URL once this site serves it.
 
 ## Words that must never appear on this site
 
@@ -95,13 +103,15 @@ lawyer is shown:
 - **No em or en dash**, anywhere, as a character or an entity.
 - **No protected name**: the arcade basketball machine and alley game trademarks the brief warns about,
   the league abbreviations, the catch phrase, any team, league or player name, or another app's name.
-- **None of the owner's other games**, by name or by link, the sibling Duo games included.
+- **None of the owner's other games**, by name or by link, the sibling games included.
   Cross-promotion belongs in AdMob house campaigns, not on a legal page.
-- **The device's name only as a platform statement** ("Designed for iPhone Duo"), never as part of the
-  game's name.
+- **The device's name nowhere, and the game's first name nowhere** (nor the old domain). App Review
+  rejected the first name under guideline 5.2.5, and the store copy now names no Apple product in any
+  field a customer sees (decision 341), so the site says "a phone that folds" or "your phone folded
+  like a laptop". The old rule allowed the device's name as a platform statement; it does not any more.
 
-`scripts/lint-site.py` enforces all four, over every text file in the repository, this README and its
-own source included. Its patterns are the game repository's (`Scripts/lint-store-copy.py`), spelled in
+`scripts/lint-site.py` enforces all four: the first three over every text file in the repository, this
+README and its own source included, and the last over the published files. Its patterns are the game repository's (`Scripts/lint-store-copy.py`), spelled in
 pieces so the script does not fail its own scan, and `--self-test` proves each one still catches what it
 should. Run it before every commit that touches a word:
 
@@ -126,22 +136,32 @@ composer draws in HTML and CSS. Nothing was downloaded, traced, painted over or 
 
     scripts/make-images.sh      re-derives assets/ from ../half_court_duo (the logo by hcd-art, the rest
                                 from its marketing/); it builds hcd-art with the Xcode seed, as the game does
-    scripts/make-og.sh          re-renders the share card, assets/og-2.jpg, from scripts/og-card.html
+    scripts/make-og.sh          re-renders the share card, assets/og-3.jpg, from scripts/og-card.html
 
 `make-images.sh` cuts each screenshot just below its store caption: those words would repeat the page's
 own prose, and words inside a picture are invisible to the lint and to a diff. The cut is done by
 headless Brave on a local file (`sips --cropOffset` is unreliable), at pixel rows measured on the
 committed pictures and written at the top of the script. The share card's words are text in
 `og-card.html`, and it says nothing about availability, so it cannot go stale on launch day. **If its
-wording or its logo ever changes, write it to a new file name** (`og-3.jpg` next) and point the pages
+wording or its logo ever changes, write it to a new file name** (`og-4.jpg` next) and point the pages
 at that: messaging apps and social sites cache a card by its URL for days, and keep the old file
-published for a release cycle so links already in the wild keep their picture. The one exception was
-`og-1.jpg`, the first card: it showed option A, an icon option the owner did not choose, and the site
-had been public for about an hour when it was replaced, so it was deleted the same day. A chat app
-that unfurled the link in that hour kept its own copy of the picture; one that fetches again reads
-the page, which names `og-2.jpg`. `scripts/check-live.sh` holds every URL that served option A (the
-first card, `favicon-32.png`, `apple-touch-icon.png`, `icon-256.png`) at 404, and holds the logo and
-the card it serves now to this repository's bytes.
+published for a release cycle so links already in the wild keep their picture. Two exceptions, both
+deleted the day they were replaced. `og-1.jpg`, the first card, showed option A, an icon option the
+owner did not choose, and had been public for about an hour. `og-2.jpg` carried the game's first name
+and the device's, the words App Review rejected, and every link to it in the wild names the old
+domain, which this site stops answering on once `CNAME` names the new one; `og-3.jpg` carries Hinge Hoops. `scripts/check-live.sh`
+holds every URL that served option A (the first card, `favicon-32.png`, `apple-touch-icon.png`,
+`icon-256.png`) and `og-2.jpg` at 404, and holds the logo and the card it serves now to this
+repository's bytes.
+
+**Still to redraw after the rename: the screenshots.** Every picture under `assets/shots/` and
+`assets/poses/`, and the hero picture inside `og-3.jpg`, is a capture of the app from before the
+rename, and its cabinet sign reads the first name. They come from the game repository's committed
+`marketing/` captures, which are recaptured there with the new sign; then run `scripts/make-images.sh`
+here, then `scripts/make-og.sh`. Until hingehoops.com has first been pushed, `og-3.jpg` can be
+overwritten in place, since no cache holds it yet; after that, the redrawn card is `og-4.jpg`. The
+logo and the badges carry no name and were unchanged by the rename (re-rendered by `hcd-art`
+on 27 October 2026, byte for byte the same).
 
 ### The site's logo is not the app's icon
 
@@ -169,7 +189,7 @@ with the share card written to a new name, and fix this table; if the app's icon
 A lint asserts what a file holds; a defect is a fact about what a page draws. Every page is photographed
 before a commit:
 
-    scripts/shoot.sh /tmp/halfcourtduo-shots
+    scripts/shoot.sh /tmp/hingehoops-shots
 
 That renders the five pages with headless Brave from local files (the root relative URLs are rewritten
 in a temporary copy, never here), at 1280 px and at a 390 px phone width drawn at 2x, in light and dark,
@@ -180,14 +200,22 @@ at 500 and clips it. Then open every slice and read it.
 
 ## Setting it up
 
-**DONE 25 October 2026, and live over HTTPS.** The repository `therealcreynold/halfcourtduo-website`
-was created public and pushed; Pages was enabled from `main` at the root with the custom domain
-`halfcourtduo.com`; GitHub's certificate reached `approved` (covering `halfcourtduo.com` and
-`www.halfcourtduo.com`) a few minutes later and `https_enforced` was set; `scripts/check-live.sh` then
-printed 25 PASS and "clean". The DNS (step 4) was set at Namecheap the same day. The steps stay
-because they are how the site gets rebuilt. Read what is there before redoing anything
-(`dig +short halfcourtduo.com A`, `dig +short www.halfcourtduo.com CNAME`, or `scripts/dns.py` without
-`--apply`). In order:
+**hingehoops.com is NOT set up yet** (27 October 2026). The repository, `CNAME`, `app-ads.txt`, the
+pages, `scripts/dns.py` and `scripts/check-live.sh` all say hingehoops.com, but nothing has been pushed,
+and the Pages custom domain, the DNS and the certificate are still to do: steps 3 to 6 below, for the
+new domain. Until then the live site is the previous commit at halfcourtduo.com, which was set up on 25
+October 2026 exactly as below (Pages from `main` at the root, Namecheap DNS, the certificate approved
+for the apex and `www`, HTTPS enforced, `scripts/check-live.sh` clean).
+
+**Mind the order.** GitHub Pages serves one custom domain per repository, so the push that carries this
+`CNAME` stops halfcourtduo.com serving the site; the TestFlight build 1.0 (6), App Store Connect's URLs
+and the AdMob consent messages still name halfcourtduo.com until they are moved (the game repository's
+decision 343 moves the app and App Store Connect together with build 1.0 (7), once hingehoops.com
+serves). Have hingehoops.com's DNS in place before the push, and decide what halfcourtduo.com does
+afterwards (a registrar redirect to `https://hingehoops.com` keeps old links landing somewhere).
+
+Read what is there before redoing anything (`dig +short hingehoops.com A`,
+`dig +short www.hingehoops.com CNAME`, or `scripts/dns.py` without `--apply`). In order:
 
 1. **Create the repository** `therealcreynold/halfcourtduo-website`, **public** (GitHub Pages on a free
    account serves only public repositories), with no README or licence from GitHub, then push:
@@ -196,10 +224,10 @@ because they are how the site gets rebuilt. Read what is there before redoing an
        git push -u origin main
 
 2. **Settings, Pages**: source "Deploy from a branch", branch `main`, folder `/ (root)`.
-3. **Settings, Pages, Custom domain**: `halfcourtduo.com`. GitHub writes a `CNAME` file; one is already
+3. **Settings, Pages, Custom domain**: `hingehoops.com`. GitHub writes a `CNAME` file; one is already
    committed here, so it should simply agree.
-4. **DNS at Namecheap**, where halfcourtduo.com is registered (done on 25 October 2026; kept here for a
-   rebuild). Delete the parking records Namecheap adds
+4. **DNS at Namecheap**, assuming hingehoops.com is registered there as halfcourtduo.com was (done for
+   halfcourtduo.com on 25 October 2026; not yet for hingehoops.com). Delete the parking records Namecheap adds
    to a new domain (on the siblings' domains they were a `CNAME www` to `parkingpage.namecheap.com` and a
    `URL Redirect @`), then add these nine. An apex domain needs A and AAAA records rather than a CNAME:
 
@@ -236,26 +264,28 @@ served an icon option the owner did not choose are 404, `README.md`, `scripts/` 
 NOT served, and the home page agrees with the App Store about whether the game is on sale (see "Launch
 day"). By hand:
 
-    curl -sSI https://halfcourtduo.com/                 # 200
-    curl -sSI https://halfcourtduo.com/privacy/         # 200
-    curl -sSI https://halfcourtduo.com/support/         # 200
-    curl -sSI https://halfcourtduo.com/terms/           # 200
-    curl -sSI https://halfcourtduo.com/privacy          # 301 to /privacy/
-    curl -sSI https://halfcourtduo.com/nope             # 404, and the styled page ("Off the rim")
-    curl -sSI https://halfcourtduo.com/app-ads.txt      # 200, content-type text/plain
-    curl -sS  https://halfcourtduo.com/app-ads.txt      # OWNERDOMAIN and the Google line
-    curl -sSI http://halfcourtduo.com/ | grep -i location        # https://halfcourtduo.com/
-    curl -sSI https://www.halfcourtduo.com/ | grep -i location   # https://halfcourtduo.com/
-    curl -sSI https://halfcourtduo.com/README.md        # 404: not published
+    curl -sSI https://hingehoops.com/                 # 200
+    curl -sSI https://hingehoops.com/privacy/         # 200
+    curl -sSI https://hingehoops.com/support/         # 200
+    curl -sSI https://hingehoops.com/terms/           # 200
+    curl -sSI https://hingehoops.com/privacy          # 301 to /privacy/
+    curl -sSI https://hingehoops.com/nope             # 404, and the styled page ("Off the rim")
+    curl -sSI https://hingehoops.com/app-ads.txt      # 200, content-type text/plain
+    curl -sS  https://hingehoops.com/app-ads.txt      # OWNERDOMAIN and the Google line
+    curl -sSI http://hingehoops.com/ | grep -i location        # https://hingehoops.com/
+    curl -sSI https://www.hingehoops.com/ | grep -i location   # https://hingehoops.com/
+    curl -sSI https://hingehoops.com/README.md        # 404: not published
 
-The game repository's archive gate is meant to check the privacy, support and `app-ads.txt` URLs too
-(`Scripts/preflight-release.sh`, which `ci_post_clone.sh` requires and which does not exist yet).
+The game repository's archive gate checks the privacy, support and `app-ads.txt` URLs too
+(`Scripts/preflight-release.sh`, which `ci_post_clone.sh` requires). It fetches the served privacy
+page and compares it with `docs/PRIVACY-POLICY.md` word for word, with the same normalisation as
+`scripts/lint-site.py`, so a page that passes the lint here passes it there once deployed.
 
 | App Store Connect field | Value |
 |---|---|
-| Privacy Policy URL | `https://halfcourtduo.com/privacy/` |
-| Support URL | `https://halfcourtduo.com/support/` |
-| Marketing URL | `https://halfcourtduo.com`, the **apex**, not a page |
+| Privacy Policy URL | `https://hingehoops.com/privacy/` |
+| Support URL | `https://hingehoops.com/support/` |
+| Marketing URL | `https://hingehoops.com`, the **apex**, not a page |
 
 `/terms/` goes into no App Store Connect field.
 
@@ -267,7 +297,7 @@ Pointed at a page, the whole verification depends on the crawler reducing that t
 looking for a `/privacy/app-ads.txt` that does not exist. Set it to the apex and there is nothing to
 reduce and nothing to get wrong. Getting it wrong produces no error anywhere: the pages still work, the
 listing looks fine, and AdMob verification simply never completes. The same reasoning is why
-`OWNERDOMAIN` in `app-ads.txt` is `halfcourtduo.com` with no scheme and no path.
+`OWNERDOMAIN` in `app-ads.txt` is `hingehoops.com` with no scheme and no path.
 
 ## What this repository publishes
 

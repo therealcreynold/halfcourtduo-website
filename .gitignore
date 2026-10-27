@@ -1,4 +1,4 @@
 # macOS writes this into any folder opened in Finder. GitHub Pages publishes every file in the
 # repository that _config.yml does not exclude, so a committed .DS_Store would be a public binary at
-# https://halfcourtduo.com/.DS_Store listing the names of everything in the folder.
+# https://hingehoops.com/.DS_Store listing the names of everything in the folder.
 .DS_Store

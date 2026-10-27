@@ -15,8 +15,10 @@ What it fails on, and why each one is here:
     for the store; on a website the same names are what a search engine indexes and a lawyer reads).
     The patterns are the game repository's own (Scripts/lint-store-copy.py), spelled in pieces so
     this file does not trip its own scan.
-  - the device's name anywhere but a "Designed for iPhone Duo" statement, in the published files.
-    The house rule: never in the game's name, only as a platform statement.
+  - the device's name anywhere in the published files, and the game's first name. App Review
+    rejected the first name under guideline 5.2.5 for trading on the device's name, and the store
+    copy now names no Apple product in any field a customer sees (the game repository's decisions
+    340 and 341), so the site does not either: it says "a phone that folds".
 
   THE PUBLISHED FILES (everything _config.yml does not exclude):
   - a Liquid tag opener or YAML front matter. Jekyll copies a page byte for byte only while it has
@@ -28,7 +30,7 @@ What it fails on, and why each one is here:
   - a root relative link or source that does not resolve to a file in this repository, and an <img>
     whose width and height attributes are not the file's real pixel size.
   - a page without the doctype, a viewport, a title, the stylesheet, a canonical URL on
-    https://halfcourtduo.com (except the 404), or an og:image naming a file that does not exist.
+    https://hingehoops.com (except the 404), or an og:image naming a file that does not exist.
   - an og:image whose og:image:width and height are not the file's, and a page without exactly one
     <link rel=icon> and one <link rel=apple-touch-icon> whose sizes attribute is the file's real size
     (both are the site's logo; README.md, "The pictures").
@@ -52,7 +54,7 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 GAME = ROOT.parent / "half_court_duo"
-DOMAIN = "halfcourtduo.com"
+DOMAIN = "hingehoops.com"
 PAGES = ["index.html", "privacy/index.html", "support/index.html", "terms/index.html"]
 NOT_PUBLISHED = {"scripts", "README.md"}            # must agree with _config.yml's exclude list
 TEXT_SUFFIXES = {".html", ".css", ".txt", ".xml", ".yml", ".md", ".py", ".sh", ""}
@@ -76,7 +78,9 @@ PROTECTED = [
 ]
 DASH = re.compile("[\u2013\u2014]|&[mn]dash;|&#(8211|8212|x201[34]);", re.I)
 DEVICE = re.compile(r"iphone\s+duo", re.I)
-DEVICE_ALLOWED = re.compile(r"Designed for iPhone Duo")
+# The first name, in prose or as the old domain. Spelled in pieces like the patterns above; it may
+# still appear where nobody visiting the site reads it (the repository's own name in README.md).
+OLD_NAME = re.compile(r"half[\s_-]?" + r"court[\s_-]?" + r"duo", re.I)
 
 
 def published_files() -> list[pathlib.Path]:
@@ -117,9 +121,9 @@ def check_words(problems: list[str]) -> None:
                 if pattern.search(line):
                     problems.append(f"{rel(path)}:{number}: {why}")
             if path in published and DEVICE.search(line):
-                stripped = DEVICE_ALLOWED.sub("", line)
-                if DEVICE.search(stripped):
-                    problems.append(f"{rel(path)}:{number}: the device's name outside 'Designed for iPhone Duo'")
+                problems.append(f"{rel(path)}:{number}: the device's name (guideline 5.2.5)")
+            if path in published and OLD_NAME.search(line):
+                problems.append(f"{rel(path)}:{number}: the game's first name (it is Hinge Hoops now)")
     # File names too: a name is as public as a sentence.
     for path in ROOT.rglob("*"):
         if ".git" in path.relative_to(ROOT).parts[:1]:
@@ -294,7 +298,7 @@ def check_contracts(problems: list[str]) -> None:
     ads = (ROOT / "app-ads.txt").read_text() if (ROOT / "app-ads.txt").exists() else ""
     lines = [l.strip() for l in ads.splitlines() if l.strip() and not l.strip().startswith("#")]
     if f"OWNERDOMAIN={DOMAIN}" not in lines:
-        problems.append("app-ads.txt: no OWNERDOMAIN=halfcourtduo.com line")
+        problems.append(f"app-ads.txt: no OWNERDOMAIN={DOMAIN} line")
     if SELLER_LINE not in lines:
         problems.append("app-ads.txt: the Google seller line is missing or altered")
     extra = [l for l in lines if l not in (f"OWNERDOMAIN={DOMAIN}", SELLER_LINE)]
@@ -380,10 +384,15 @@ def self_test() -> list[str]:
             problems.append(f"self-test: the dash pattern misses {needle!r}")
     if DASH.search("a hyphen-minus is fine, and &middot; too"):
         problems.append("self-test: the dash pattern catches a hyphen")
-    if DEVICE.search(DEVICE_ALLOWED.sub("", "Designed for iPhone Duo")):
-        problems.append("self-test: the allowed platform statement is refused")
-    if not DEVICE.search(DEVICE_ALLOWED.sub("", "the iPhone Duo game")):
-        problems.append("self-test: the device's name in prose is not caught")
+    for needle in ["Designed for iP" + "hone Duo", "the iP" + "hone  duo game"]:
+        if not DEVICE.search(needle):
+            problems.append(f"self-test: the device's name is not caught in {needle!r}")
+    for needle in ["Half Court " + "Duo", "half" + "courtduo.com", "HALF COURT " + "DUO"]:
+        if not OLD_NAME.search(needle):
+            problems.append(f"self-test: the first name is not caught in {needle!r}")
+    for text in ["Hinge Hoops", "a half court shot", "a phone that folds"]:
+        if DEVICE.search(text) or OLD_NAME.search(text):
+            problems.append(f"self-test: {text!r} is caught, and should not be")
     return problems
 
 

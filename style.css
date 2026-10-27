@@ -1,4 +1,4 @@
-/* Half Court Duo: the whole site's styles.
+/* Hinge Hoops: the whole site's styles.
 
    Every page links this one file, so the palette is written down once. The colours are the game's
    own, from ArtPalette in the game repository (Sources/HalfCourtArt/HalfCourtArt.swift): navy base
@@ -117,7 +117,8 @@ img { max-width: 100%; height: auto; }
 }
 .bar .wrap { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center;
              justify-content: space-between; }
-/* The wordmark is the cabinet's sign: HALF COURT in orange neon, DUO in cyan. */
+/* The wordmark is the cabinet's sign: HINGE in orange neon, HOOPS in cyan
+   (the game's CabinetArt.signColors, decision 340). */
 .brand {
   font-size: 19px; font-weight: 800; letter-spacing: .04em; text-decoration: none;
   color: var(--orange); text-shadow: 0 0 10px rgba(255,122,26,.45);

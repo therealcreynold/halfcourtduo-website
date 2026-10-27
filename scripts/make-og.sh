@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Renders the Open Graph share card, assets/og-2.jpg, from scripts/og-card.html.
+# Renders the Open Graph share card, assets/og-3.jpg, from scripts/og-card.html.
 #
-#     scripts/make-og.sh                 writes assets/og-2.jpg
-#     scripts/make-og.sh assets/og-3.jpg a new name, for when the card's words or pictures change
+#     scripts/make-og.sh                 writes assets/og-3.jpg
+#     scripts/make-og.sh assets/og-4.jpg a new name, for when the card's words or pictures change
 #
 # WHY THERE IS A SCRIPT AND NOT JUST AN IMAGE. The card carries words, and a picture's words are
 # invisible to grep, to a diff and to scripts/lint-site.py. Here they are text in og-card.html.
@@ -11,16 +11,18 @@
 # cache a card by its URL and serve the old bytes for days, so overwriting the card would leave the
 # stale one in circulation exactly where it does the damage. Bump the name, point the four pages'
 # og:image and twitter:image at it (scripts/lint-site.py checks they all name a file that exists),
-# and keep the old file for a release cycle so links already in the wild do not break. og-2.jpg
-# carries the site's logo, option 4 (README.md, "The pictures"). The exception was og-1.jpg, the
-# first card: it showed an icon option the owner did not choose and had been public for about an hour,
-# so it was deleted the day it was replaced, and scripts/check-live.sh holds it gone.
+# and keep the old file for a release cycle so links already in the wild do not break. og-3.jpg
+# carries the site's logo, option 4 (README.md, "The pictures"), and the name Hinge Hoops. Two
+# exceptions, both deleted the day they were replaced and both held gone by scripts/check-live.sh:
+# og-1.jpg, the first card, which showed an icon option the owner did not choose and had been public
+# for about an hour; and og-2.jpg, which carried the game's first name and the device's, the words
+# App Review rejected under guideline 5.2.5, and whose links in the wild all name the old domain.
 #
 # The renderer is headless Brave on a local file: nothing is fetched. Run scripts/make-images.sh first
 # if the logo or the hero screenshot changed, since the card draws both.
 set -euo pipefail
 SITE="$(cd "$(dirname "$0")/.." && pwd)"
-OUT="$SITE/${1:-assets/og-2.jpg}"
+OUT="$SITE/${1:-assets/og-3.jpg}"
 BRAVE="/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
 [ -x "$BRAVE" ] || { echo "make-og: headless Brave not found at $BRAVE"; exit 1; }
 
